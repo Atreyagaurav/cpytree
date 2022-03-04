@@ -1,0 +1,48 @@
+* cpytree
+
+  
+** Introduction
+   This is a tool made to copy the tree structure containing the folders into some other place.
+
+   Right now it doesn't do the copy operation itself, but rather makes a bash script which can do the making of directory for you.
+
+For example we have this structure in this repository.
+
+#+begin_src verbose
+.
+├── Makefile
+├── README.org
+├── cpytree
+├── go.mod
+├── main.go
+├── makedir.sh
+└── test
+    ├── file1
+    │   ├── file2
+    │   └── file3
+    └── file4
+        └── file5
+
+6 directories, 6 files
+#+end_src
+
+
+If we try the ~./cpytree test/~ command on this one, we'll get something like this on a new file named ~makedirs.sh~
+
+
+#+begin_src verbose
+mkdir -p ./test/file1/file2
+mkdir -p ./test/file1/file3
+mkdir -p ./test/file4/file5
+mkdir -p ./test/
+#+end_src
+
+** Future Plans
+It's buggy and doesn't work nicely for now, but it's the proof of concept. For later what I want it to do are as follows:
+
+- Be able to actually make new folders or a script from any path you give as a argument
+- use . as default path with no arguments
+- Be able to give a parameter saying how many levels of folders you want to copy
+- option to include hidden files and by default ignore those
+- debug mode which shows the tree structure only (could be duplicate of tree command so maybe not)
+
